@@ -10,8 +10,8 @@ _.mixin( {
 	/**
 	 * Extends a constructor with the prototype of another.
 	 * 
-	 * When using this, it's required to include a call to the constructor of the parent class as the
-	 * first code in the child class's constructor.
+	 * When using this, it's required to include a call to the constructor of the parent class as
+	 * the first code in the child class's constructor.
 	 * 
 	 * @example
 	 *     // Define parent class
@@ -61,7 +61,8 @@ _.mixin( {
 	/**
 	 * Gets a value within a multi-level collection.
 	 * 
-	 * A path is a list of object keys and array indexes which describe how to reach a specific value.
+	 * A path is a list of object keys and array indexes which describe how to reach a specific
+	 * value.
 	 * 
 	 * @example
 	 *     _.traverse( { 'a': ['b', 'c', { 'd': 'test' }] }, ['a', 2, 'd'] ); // returns 'test'
@@ -69,7 +70,7 @@ _.mixin( {
 	 * @static
 	 * @method
 	 * @param {Array} path List of keys and indexes in the document
-	 * @param {Integer} [steps] Number of steps to take, positive to limit, negative to reduce length
+	 * @param {Integer} [steps] Number of steps to take, positive to set/negative to reduce limit
 	 * @returns {Mixed} Value path points to
 	 * @throws {Error} If path is not valid
 	 */
