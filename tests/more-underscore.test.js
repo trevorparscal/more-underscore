@@ -47,4 +47,6 @@ test( 'traverse', function() {
 	equal( _.traverse( tree, ['a', 0] ), 1, 'Traverse to an array in an object' );
 	equal( _.traverse( tree, ['a', 1, 'd'] ), 3, 'Traverse to an object in an array in an object' );
 	equal( _.traverse( tree, ['b', 1, 'd'] ), undefined, 'Invalid paths return undefined' );
+	equal( _.traverse( tree, [] ), tree, 'Empty path returns top-level object' );
+	equal( _.traverse( tree ), tree, 'Undefined path returns top-level object' );
 } );

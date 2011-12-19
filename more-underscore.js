@@ -69,12 +69,16 @@ _.mixin( {
 	 * 
 	 * @static
 	 * @method
-	 * @param {Array} path List of keys and indexes in the document
+	 * @param {Mixed} Value to traverse
+	 * @param {Array} [path] List of keys and indexes in the document
 	 * @param {Integer} [steps] Number of steps to take, positive to set/negative to reduce limit
 	 * @returns {Mixed} Value path points to
 	 * @throws {Error} If path is not valid
 	 */
 	'traverse': function( value, path, steps ) {
+		if ( !path || !path.length ) {
+			return value;
+		}
 		var length = !steps ? path.length :
 			( steps > 0 ? Math.min( steps, path.length ) : Math.max( 0, path.length - steps ) );
 		for ( var i = 0; i < length; i++ ) {
