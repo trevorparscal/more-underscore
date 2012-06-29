@@ -44,10 +44,10 @@ Gets a value within a multi-level collection. A path is a list of object keys an
 
     _.inject( arr, offset, items )
 
-Inserts items of one array into another at a given offset.
+Inserts items of one array into another at a given offset. Modifies the original array.
 
     var arr = [0, 1, 2, 3];
-    _.traverse( arr, 2, ['a', 'b', 'c'] );
+    _.inject( arr, 2, ['a', 'b', 'c'] );
     => [0, 1, 'a', 'b', 'c', 2, 3]
 
 [1]: http://github.com/documentcloud/underscore/

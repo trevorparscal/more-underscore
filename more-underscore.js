@@ -106,6 +106,7 @@ _.mixin( {
 	 * @param {Number} offset Offset in arr to splice at. May be negative; see the 'index'
 	 * parameter for Array.prototype.splice()
 	 * @param {Array} items Array of items to insert at the offset
+	 * @returns {Array} Modified array
 	 */
 	'inject': function( arr, offset, items ) {
 		// Splicing needs to be done in in batches, because of maximum argument length limits tend
@@ -119,5 +120,6 @@ _.mixin( {
 			);
 			index += batchSize;
 		}
+		return arr;
 	}
 } );
