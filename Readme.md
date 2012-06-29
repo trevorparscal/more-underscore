@@ -4,7 +4,7 @@ More-underscore is an add-on to [Underscore][1]. Please enjoy, and feel free to 
 
 ## Documentation
 
-###extendClass
+### extendClass
 
     _.extendClass( dst, src )
 
@@ -22,7 +22,7 @@ Extends a constructor with the prototype of another. When using this, it's requi
     // Extend prototype
     _.extendClass( Bar, Foo );
 
-###objectify
+### objectify
 
     _.objectify( arr, [...] )
 
@@ -39,5 +39,15 @@ Gets a value within a multi-level collection. A path is a list of object keys an
 
     _.traverse( { 'a': ['b', 'c', { 'd': 'test' }] }, ['a', 2, 'd'] );
     => 'test'
+
+### inject
+
+    _.inject( arr, offset, items )
+
+Inserts items of one array into another at a given offset.
+
+    var arr = [0, 1, 2, 3];
+    _.traverse( arr, 2, ['a', 'b', 'c'] );
+    => [0, 1, 'a', 'b', 'c', 2, 3]
 
 [1]: http://github.com/documentcloud/underscore/

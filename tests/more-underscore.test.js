@@ -11,15 +11,18 @@ test( 'extendClass', function() {
 		this.e = true;
 	}
 	ParentClass.prototype.b = b;
-	function ChildClass() { }
+	function ChildClass() {
+		ParentClass.call( this );
+	}
 	ChildClass.prototype.c = c;
 	ChildClass.prototype.d = d;
 	_.extendClass( ChildClass, ParentClass );
-	strictEqual( ChildClass.prototype.a, a, 'Child prototype has methods from parent constructor' );
+	var child = new ChildClass();
+	strictEqual( child.a, a, 'Child inherits methods from parent through constructor' );
 	strictEqual( ChildClass.prototype.b, b, 'Child prototype has methods from parent prototype' );
 	strictEqual( ChildClass.prototype.c, c, 'Child prototype has methods from child prototype' );
 	strictEqual( ChildClass.prototype.d, d, 'Child prototype overrides parent methods' );
-	strictEqual( ChildClass.prototype.e, undefined, 'Parent properties are ignored' );
+	strictEqual( ChildClass.prototype.e, undefined, 'Parent properties are not inherited' );
 	strictEqual( ParentClass.prototype.c, undefined, 'Parent prototype is not modified' );
 } );
 
@@ -49,4 +52,11 @@ test( 'traverse', function() {
 	equal( _.traverse( tree, ['b', 1, 'd'] ), undefined, 'Invalid paths return undefined' );
 	equal( _.traverse( tree, [] ), tree, 'Empty path returns top-level object' );
 	equal( _.traverse( tree ), tree, 'Undefined path returns top-level object' );
+} );
+
+test( 'inject', function() {
+	var actual = [1, 2, 3, 4, 5, 6, 7, 8, 9],
+		expected = [1, 2, 3, 'a', 'b', 'c', 'd', 'e', 4, 5, 6, 7, 8, 9];
+	_.inject( actual, 3, ['a', 'b', 'c', 'd', 'e'] );
+	deepEqual( actual, expected, 'Inserts items in the middle' );
 } );

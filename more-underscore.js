@@ -88,5 +88,36 @@ _.mixin( {
 			}
 		}
 		return value;
+	},
+	/**
+	 * Inserts items of one array into another at a given offset.
+	 *
+	 * This is the equivalent of calling arr.splice( offset, 0, d1, d2, d3, ... ) except that the
+	 * "d1, d2, d3, ..." arguments are specified as an array rather than separate parameters.
+	 *
+	 * @example
+	 *     var arr = [1, 2, 3];
+	 *     _.inject( arr, 1, [4, 5, 6] );
+	 *     // arr is now [1, 4, 5, 6, 2, 3];
+	 *
+	 * @static
+	 * @method
+	 * @param {Array} arr Array to remove from and insert into. Will be modified
+	 * @param {Number} offset Offset in arr to splice at. May be negative; see the 'index'
+	 * parameter for Array.prototype.splice()
+	 * @param {Array} items Array of items to insert at the offset
+	 */
+	'inject': function( arr, offset, items ) {
+		// Splicing needs to be done in in batches, because of maximum argument length limits tend
+		// to vary between JavaScript engines - 1024 seems to be a safe batch size on all of them
+		var index = 0,
+			batchSize = 1024;
+		// Splice in batches of 1024 items at a time
+		while ( index < items.length ) {
+			arr.splice.apply(
+				arr, [index + offset, 0].concat( items.slice( index, index + batchSize ) )
+			);
+			index += batchSize;
+		}
 	}
 } );
